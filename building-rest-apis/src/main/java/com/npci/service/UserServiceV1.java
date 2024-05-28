@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 @Component
@@ -24,5 +25,14 @@ public class UserServiceV1 {
         users.add(new UserBean(1L, "Krishna", LocalDate.now().minusYears(45), "786786734", "krishna@gmail.com", "abc@123",
                 LocalDateTime.now(), null));
         return users;
+    }
+
+    public UserBean getUserByID(Long userID) {
+        for(UserBean user : users) {
+            if(Objects.equals(user.getUserId(), userID)){
+                return user;
+            }
+        }
+        return null;
     }
 }
