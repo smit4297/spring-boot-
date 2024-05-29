@@ -41,4 +41,9 @@ public class UserServiceV1 {
             return "User not found";
         }
     }
+
+
+    public UserBean createUser(String fullName, LocalDate dob, String mobile, String email, String password) {
+        return new UserBean( Long.valueOf(users.size() + 1),fullName ,dob, mobile,email,password, LocalDate.now().minusYears(25).atStartOfDay(), LocalDate.now().minusYears(25).atStartOfDay());
+    }
 }

@@ -5,13 +5,12 @@ import com.npci.entity.UserBean;
 import com.npci.pojo.HelloWorldBean;
 import com.npci.service.UserServiceV1;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
@@ -44,5 +43,11 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("user not found");
         }
         return new ResponseEntity<>("user deleted", HttpStatus.OK);
+    }
+
+    @PostMapping("/add-user")
+    public ResponseEntity<UserBean> createUser(@RequestBody UserBean user) {
+        UserBean createdUser = userService.createUser(user.getFullName(), user.getDob(), user.getMobile(), user.getEmail(), user.getPassword());
+        return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
     }
 }

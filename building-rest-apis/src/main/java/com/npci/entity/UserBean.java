@@ -31,6 +31,8 @@ public class UserBean {
         this.createDate = createDate;
         this.updateDate = updateDate;
     }
+
+
     public Long getUserId() {
         return userId;
     }
