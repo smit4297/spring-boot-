@@ -47,7 +47,8 @@ public class UserController {
 
     @PostMapping("/add-user")
     public ResponseEntity<UserBean> createUser(@RequestBody UserBean user) {
-        UserBean createdUser = userService.createUser(user.getFullName(), user.getDob(), user.getMobile(), user.getEmail(), user.getPassword());
+//        UserBean createdUser = userService.createUser(user.getFullName(), user.getDob(), user.getMobile(), user.getEmail(), user.getPassword());
+        UserBean createdUser = userService.createUser(user);
         return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
     }
 }

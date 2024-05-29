@@ -43,9 +43,17 @@ public class UserServiceV1 {
     }
 
 
-    public UserBean createUser(String fullName, LocalDate dob, String mobile, String email, String password) {
-        UserBean newUser =  new UserBean( Long.valueOf(users.size() + 1),fullName ,dob, mobile,email,password, LocalDate.now().minusYears(25).atStartOfDay(), LocalDate.now().minusYears(25).atStartOfDay());
-        users.add(newUser);
-        return newUser;
+//    public UserBean createUser(String fullName, LocalDate dob, String mobile, String email, String password) {
+////        UserBean newUser =  new UserBean((long) (users.size() + 1),fullName ,dob, mobile,email,password, LocalDate.now().atStartOfDay(), LocalDate.now().atStartOfDay());
+////        users.add(newUser);
+////        return newUser;
+////    }
+
+    public UserBean createUser(UserBean user) {
+        user.setUserId((long) (users.size() + 1));
+        user.setUpdateDate(LocalDate.now().atStartOfDay());
+        user.setCreateDate(LocalDate.now().atStartOfDay());
+        users.add(user);
+        return user;
     }
 }

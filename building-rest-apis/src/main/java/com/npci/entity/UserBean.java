@@ -75,10 +75,10 @@ public class UserBean {
     public void setCreateDate(LocalDateTime createDate) {
         this.createDate = createDate;
     }
-    public LocalDateTime getUpdaetDate() {
+    public LocalDateTime getUpdateDate() {
         return updateDate;
     }
-    public void setUpdaetDate(LocalDateTime updateDate) {
+    public void setUpdateDate(LocalDateTime updateDate) {
         this.updateDate = updateDate;
     }
 
