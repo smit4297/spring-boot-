@@ -2,15 +2,18 @@ package com.npci.service;
 
 import com.npci.entity.UserBean;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
 
-@Component
+@Service
 public class UserServiceV1 {
 
     private static List<UserBean> users = generateDummyUsers();
@@ -42,18 +45,31 @@ public class UserServiceV1 {
         }
     }
 
-
-//    public UserBean createUser(String fullName, LocalDate dob, String mobile, String email, String password) {
-////        UserBean newUser =  new UserBean((long) (users.size() + 1),fullName ,dob, mobile,email,password, LocalDate.now().atStartOfDay(), LocalDate.now().atStartOfDay());
-////        users.add(newUser);
-////        return newUser;
-////    }
-
     public UserBean createUser(UserBean user) {
         user.setUserId((long) (users.size() + 1));
         user.setUpdateDate(LocalDate.now().atStartOfDay());
         user.setCreateDate(LocalDate.now().atStartOfDay());
         users.add(user);
         return user;
+    }
+
+    public UserBean updateUser(UserBean existingUser, UserBean updatedUser) {
+        if (updatedUser.getFullName() != null) {
+            existingUser.setFullName(updatedUser.getFullName());
+        }
+        if (updatedUser.getDob() != null) {
+            existingUser.setDob(updatedUser.getDob());
+        }
+        if (updatedUser.getMobile() != null) {
+            existingUser.setMobile(updatedUser.getMobile());
+        }
+        if (updatedUser.getEmail() != null) {
+            existingUser.setEmail(updatedUser.getEmail());
+        }
+        if (updatedUser.getPassword() != null) {
+            existingUser.setPassword(updatedUser.getPassword());
+        }
+        existingUser.setUpdateDate(LocalDateTime.now());
+        return existingUser;
     }
 }

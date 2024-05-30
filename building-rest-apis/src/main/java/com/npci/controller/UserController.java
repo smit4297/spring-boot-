@@ -47,8 +47,21 @@ public class UserController {
 
     @PostMapping("/add-user")
     public ResponseEntity<UserBean> createUser(@RequestBody UserBean user) {
-//        UserBean createdUser = userService.createUser(user.getFullName(), user.getDob(), user.getMobile(), user.getEmail(), user.getPassword());
         UserBean createdUser = userService.createUser(user);
         return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
     }
+
+    @PutMapping("/update-user/{userID}")
+    public ResponseEntity<Object> updateUser(@PathVariable Long userID, @RequestBody UserBean updatedUser) {
+        UserBean existingUser = userService.getUserByID(userID);
+        if (existingUser == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+        }
+        UserBean updatedUserInfo = userService.updateUser(existingUser, updatedUser);
+        if (updatedUserInfo == null) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to update user");
+        }
+        return ResponseEntity.ok(updatedUserInfo);
+    }
+
 }

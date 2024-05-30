@@ -1,5 +1,7 @@
 package com.npci.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -8,6 +10,7 @@ public class UserBean {
 
     private Long userId;
     private String fullName;
+    @JsonFormat(pattern ="dd-MM-yyyy")
     private LocalDate dob;
     private String mobile;
     private String email;
