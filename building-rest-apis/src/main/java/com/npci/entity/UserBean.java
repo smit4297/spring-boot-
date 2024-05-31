@@ -1,6 +1,7 @@
 package com.npci.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -9,9 +10,15 @@ public class UserBean {
 
 
     private Long userId;
+    @NotBlank(message = "fullname should not be empty")
+    @Size(min = 3,max = 10, message = "full name min length is 3")
     private String fullName;
+
+    @Past(message = "DOB should be past date")
     @JsonFormat(pattern ="dd-MM-yyyy")
     private LocalDate dob;
+    @NotNull
+    @Pattern(regexp = "[6789]{1}[0-9]{9}", message="Enter a valid 10 digit no")
     private String mobile;
     private String email;
     private String password;

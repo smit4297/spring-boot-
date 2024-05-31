@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 //@ComponentScan(basePackageClasses = {HelloWorldController.class, UserController.class, UserServiceV1.class})
-@ComponentScan(basePackages = {"com.npci.controller", "com.npci.service", "com.npci.component"})
+@ComponentScan(basePackages = {"com.npci.controller", "com.npci.service", "com.npci.exception"})
 public class BuildingRestApisApplication {
 
 	public static void main(String[] args) {

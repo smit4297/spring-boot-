@@ -4,6 +4,8 @@ package com.npci.controller;
 import com.npci.entity.UserBean;
 import com.npci.pojo.HelloWorldBean;
 import com.npci.service.UserServiceV1;
+import com.npci.service.UserServiceWithException;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
@@ -18,7 +20,7 @@ import java.util.Objects;
 public class UserController {
 
     @Autowired
-    private UserServiceV1 userService;
+    private UserServiceWithException userService;
 
     @GetMapping(path="/users")
     public ResponseEntity<List<UserBean>> getAllUsers(){
@@ -46,7 +48,7 @@ public class UserController {
     }
 
     @PostMapping("/add-user")
-    public ResponseEntity<UserBean> createUser(@RequestBody UserBean user) {
+    public ResponseEntity<UserBean> createUser(@Valid @RequestBody UserBean user) {
         UserBean createdUser = userService.createUser(user);
         return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
     }
